@@ -1,25 +1,26 @@
+import java.util.ArrayList;
+import java.util.List;
+
 class Solution {
     public static String reduceByFive(int num) {
-        return reduceByFiveHelper(num, num, true, "");
+        List<Integer> result = new ArrayList<>();
+        reduceByFiveHelper(num, num, true, result);
+        return result.toString().replaceAll("[\\[\\] ]","");
     }
 
-    private static String reduceByFiveHelper(int original, int current, boolean decreasing, String res) {
-        // System.out.println(res);
+    public static void reduceByFiveHelper(int original, int current, boolean decreasing, List<Integer> res) {
+        res.add(current);
         if (current == original && !decreasing) {
-            res += "," + Integer.toString(current);
-            return res.substring(1);
+            return;
         }
         if (decreasing) {
             if (current < 0) {
-                res += "," + Integer.toString(current);
-                return reduceByFiveHelper(original, current + 5, false, res);
+                reduceByFiveHelper(original, current + 5,false, res);
             } else {
-                res += "," + Integer.toString(current);
-                return reduceByFiveHelper(original, current - 5, true, res);
+                reduceByFiveHelper(original, current - 5, true, res);
             }
         } else {
-            res += "," + Integer.toString(current);
-            return reduceByFiveHelper(original, current + 5, false, res);
+            reduceByFiveHelper(original, current + 5, false, res);
         }
     }
 
