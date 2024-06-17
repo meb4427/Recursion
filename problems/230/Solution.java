@@ -1,17 +1,25 @@
 class Solution {
     public static String reduceByFive(int num) {
-        return reduceByFiveHelper(num, num - 5, Integer.toString(num), false);
+        return reduceByFiveHelper(num, num, true, "");
     }
 
-    public static String reduceByFiveHelper(int num, int currentNum, String res, boolean isUp) {
-        if (currentNum == num && isUp) {
-            return res + "," + Integer.toString(currentNum);
-        } else if (!isUp && currentNum >= 0) {
-            return reduceByFiveHelper(num, currentNum - 5, res + ',' + Integer.toString(currentNum), false);
-        } else if (currentNum < 0) {
-            return reduceByFiveHelper(num, currentNum + 5, res + ',' + Integer.toString(currentNum), true);
+    private static String reduceByFiveHelper(int original, int current, boolean decreasing, String res) {
+        // System.out.println(res);
+        if (current == original && !decreasing) {
+            res += "," + Integer.toString(current);
+            return res.substring(1);
+        }
+        if (decreasing) {
+            if (current < 0) {
+                res += "," + Integer.toString(current);
+                return reduceByFiveHelper(original, current + 5, false, res);
+            } else {
+                res += "," + Integer.toString(current);
+                return reduceByFiveHelper(original, current - 5, true, res);
+            }
         } else {
-            return reduceByFiveHelper(num, currentNum + 5, res + ',' + Integer.toString(currentNum), true);
+            res += "," + Integer.toString(current);
+            return reduceByFiveHelper(original, current + 5, false, res);
         }
     }
 
