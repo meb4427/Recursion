@@ -1,6 +1,7 @@
 class Main020306 {
     public static void changeGlobalCounter(int x) {
         int counter = x;
+        System.out.println(counter);
     }
 
     public static int incrementOne(int x) {
