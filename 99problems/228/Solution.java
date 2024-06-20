@@ -1,15 +1,19 @@
 class Solution {
     public static String commonPrefix(String s1, String s2) {
-        return commonPrefixHelper(s1, s2, "");
-    }
+        int targetLength = Math.min(s1.length(), s2.length());
+        StringBuilder res = new StringBuilder();
 
-    public static String commonPrefixHelper(String s1, String s2, String prefix) {
-        if (s1.isEmpty() || s2.isEmpty()) {
-            return prefix;
-        } else if (s1.charAt(0) == s2.charAt(0)) {
-            return commonPrefixHelper(s1.substring(1), s2.substring(1), prefix + s1.charAt(0));
+        for (int i = 0; i < targetLength; i++) {
+            if (s1.charAt(i) == s2.charAt(i)) {
+                res.append(s1.charAt(i));
+            } else {
+                break;
+            }
+        }
+        if (res.length() == 0) {
+            return "";
         } else {
-            return prefix;
+            return res.toString();
         }
     }
 
