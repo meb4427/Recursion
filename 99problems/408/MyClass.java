@@ -20,6 +20,10 @@ class Line {
         this.startPoint = startPoint;
         this.endPoint = endPoint;
     }
+
+    public boolean checkLength(double l) {
+        return l % 1 != 0;
+    }
 }
 
 class MyClass {
@@ -27,11 +31,17 @@ class MyClass {
         Point a = new Point(3, 1);
         Point b = new Point(3, 6);
         Line lineAB = new Line(a, b);
-        System.out.println(lineAB.getLength());
+        System.out.println((int)lineAB.getLength());
 
         Point c = new Point(1, 3);
         Point d = new Point(6, 15);
         Line lineCD = new Line(c, d);
-        System.out.println(lineCD.getLength());
+        System.out.println((int)lineCD.getLength());
+
+        Point e = new Point(2, 3);
+        Point f = new Point(6, 15);
+        Line lineEF = new Line(e, f);
+        double l = lineEF.getLength();
+        System.out.println(lineEF.checkLength(l) ? l : (int)l);
     }
 }
