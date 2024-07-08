@@ -1,32 +1,18 @@
 class Solution {
-    public static int countSubstring(String string) {
-        return countSubstringHelper(string, 0, 0, 0);
-    }
-
-    public static int countSubstringHelper(String string, int start, int end, int count) {
-        if (start == string.length()) {
-            return count;
+    public static int addEveryOtherElement(int[] arr) {
+        int sum = 0;
+        for (int i = 0; i < arr.length; i += 2) {
+            sum += arr[i];
         }
-
-        if (end == string.length()) {
-            return countSubstringHelper(string, start + 1, start + 1, count);
-        }
-
-        if (string.charAt(start) == string.charAt(end)) {
-            return countSubstringHelper(string, start, end + 1, count + 1);
-        } else {
-            return countSubstringHelper(string, start, end + 1, count);
-        }
+        return sum;
     }
 
     public static void main(String[] args) {
-        System.out.println(countSubstring("a"));
-        System.out.println(countSubstring("aa"));
-        System.out.println(countSubstring("aaa"));
-        System.out.println(countSubstring("abc"));
-        System.out.println(countSubstring("aba"));
-        System.out.println(countSubstring("abcab"));
-        System.out.println(countSubstring("abcaba"));
-        System.out.println(countSubstring("helloworld"));
+        System.out.println(addEveryOtherElement(new int[] { 34, 46, 45, 57 }));
+        System.out.println(addEveryOtherElement(new int[] { 60, 45, 66, 75, 56, 32, 654, 45, 100 }));
+        System.out.println(addEveryOtherElement(new int[] { 5, 10 }));
+        System.out
+                .println(addEveryOtherElement(new int[] { 120, 85, 45, 67, 54, 343, 57, 800, 88, 67, 56, 57, 68, 75 }));
+        System.out.println(addEveryOtherElement(new int[] {}));
     }
 }
